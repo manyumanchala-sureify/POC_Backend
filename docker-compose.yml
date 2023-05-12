@@ -1,0 +1,24 @@
+version: '3.9'
+services:
+  backend:
+    build: .
+    ports:
+      - 8000:3000
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+  
+
+  db:
+    image: mysql:5-oracle
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3304:3306
+    environment:
+      - MYSQL_DATABASE=apiPOC
+      # MYSQL_PASSWORD: Sureify@098
+      - MYSQL_ROOT_PASSWORD=Sureify@098
+    volumes:
+      - .dbdata:/var/lib/mysql
